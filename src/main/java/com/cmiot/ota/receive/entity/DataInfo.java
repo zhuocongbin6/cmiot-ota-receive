@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class DataInfo {
     private Info info;
+    // 校验码
     private String signature;
     private Message msg;
 }
