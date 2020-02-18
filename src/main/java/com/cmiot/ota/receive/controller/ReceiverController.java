@@ -51,12 +51,12 @@ public class ReceiverController {
             /**
              * 正常接收数据
              */
-            log.info("receive data: dids={}, startTime={}, version={}", dataInfo.getMsg().getDids(), dataInfo.getMsg().getStartTime(), dataInfo.getMsg().getVersion());
+            log.info("receive data: dids={}, startTime={}, version={}, type={}, uid={}, pid={}, at={}", dataInfo.getMsg().getDids(), dataInfo.getMsg().getStartTime(), dataInfo.getMsg().getVersion(), dataInfo.getMsg().getType(), dataInfo.getMsg().getUid(), dataInfo.getMsg().getPid(), dataInfo.getMsg().getAt());
         }else {
             /**
              * 数据异常，丢弃
              */
-            log.error("receive data: dids={}, startTime={}, version={}", dataInfo.getMsg().getDids(), dataInfo.getMsg().getStartTime(), dataInfo.getMsg().getVersion());
+            log.error("receive data: dids={}, startTime={}, version={}, type={}, uid={}, pid={}, at={}", dataInfo.getMsg().getDids(), dataInfo.getMsg().getStartTime(), dataInfo.getMsg().getVersion(), dataInfo.getMsg().getType(), dataInfo.getMsg().getUid(), dataInfo.getMsg().getPid(), dataInfo.getMsg().getAt());
         }
     }
     private String getMD5() {
