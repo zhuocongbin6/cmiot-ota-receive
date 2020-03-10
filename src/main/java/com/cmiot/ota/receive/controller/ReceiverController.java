@@ -54,6 +54,8 @@ public class ReceiverController {
         JSONObject msg = dataInfo.getJSONObject("msg");
         String nonce = dataInfo.getString("nonce");
         String md5 = getDataMD5(nonce, msg.toString());
+        log.info("receive md5: {}", signature);
+        log.info("local md5: {}", md5);
         if (md5.equals(signature)) {
             /**
              * 正常接收数据
@@ -72,12 +74,18 @@ public class ReceiverController {
         String base = token + uid;
         return DigestUtils.md5DigestAsHex(base.getBytes()).toLowerCase();
     }
-    private String getDataMD5(String nonce, String msg) {
-        String var = token + nonce + msg;
+    private static String getDataMD5(String nonce, String msg) {
+        String var = "JinlanIotRo" + nonce + msg;
         //简化操作，单纯的求md5值即可
         return DigestUtils.md5DigestAsHex(var.getBytes()).toLowerCase();
     }
-    private void print(JSONObject msg) {
+
+    /*public static void main(String[] args) {
+        String msgdd = "{\"nonce\":\"H1qhFbZh\",\"msg\":{\"uid\":33834,\"pid\":79371,\"at\":1583799876131,\"dids\":[0],\"type\":1,\"startTime\":1583799876072,\"version\":\"1.1.2\"}}";
+        JSONObject msgddJ = new JSONObject(msgdd);
+        getDataMD5(msgddJ.getString("nonce"), msgddJ.getJSONObject("msg").toString());
+    }*/
+    private  void print(JSONObject msg) {
         long uid = msg.getLong("uid");//用户id
         long pid = msg.getLong("pid");//产品id
         long at = msg.getLong("at");//数据推送的时间，毫秒
