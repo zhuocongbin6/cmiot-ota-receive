@@ -74,8 +74,8 @@ public class ReceiverController {
         String base = token + uid;
         return DigestUtils.md5DigestAsHex(base.getBytes()).toLowerCase();
     }
-    private static String getDataMD5(String nonce, String msg) {
-        String var = "JinlanIotRo" + nonce + msg;
+    private String getDataMD5(String nonce, String msg) {
+        String var = token + nonce + msg;
         //简化操作，单纯的求md5值即可
         return DigestUtils.md5DigestAsHex(var.getBytes()).toLowerCase();
     }
